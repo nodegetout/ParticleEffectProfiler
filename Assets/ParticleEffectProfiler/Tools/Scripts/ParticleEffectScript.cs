@@ -1,10 +1,6 @@
 ﻿#if UNITY_EDITOR
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 /// <summary>
@@ -13,13 +9,14 @@ using UnityEngine;
 /// </summary>
 public class ParticleEffectScript : MonoBehaviour {
 
-    public AnimationCurve 粒子数量 = new AnimationCurve();
-    public AnimationCurve DrawCall = new AnimationCurve();
-    public AnimationCurve Overdraw = new AnimationCurve();
+    [Header("粒子数量变化曲线")] public AnimationCurve ParticleCount = new AnimationCurve();
+    [Header("drawcall变化曲线")]public AnimationCurve DrawCall = new AnimationCurve();
+    [Header("填充率变化曲线")]public AnimationCurve Overdraw = new AnimationCurve();
     //特效是否循环播放
-    public bool 循环 = false;
+    [Header("循环")] public bool isLoop = false;
+    [Header("特效运行时间")]
     [Range(1,10)]
-    public int 特效运行时间 = 3;
+    public int particleEffectLastTime = 3;
 
     EffectEvla m_EffectEvla;
     ParticleSystem[] m_ParticleSystems;
@@ -103,17 +100,17 @@ public class ParticleEffectScript : MonoBehaviour {
 
     void UpdateParticleCountCurve()
     {
-        粒子数量 = m_CurveParticleCount.UpdateAnimationCurve(m_ParticleCount, 循环, 特效运行时间);
+        ParticleCount = m_CurveParticleCount.UpdateAnimationCurve(m_ParticleCount, isLoop, particleEffectLastTime);
     }
     void UpdateDrawCallCurve()
     {
-        DrawCall = m_CurveDrawCallCount.UpdateAnimationCurve(GetParticleEffectData.GetOnlyParticleEffecDrawCall(), 循环, 特效运行时间);
+        DrawCall = m_CurveDrawCallCount.UpdateAnimationCurve(GetParticleEffectData.GetOnlyParticleEffecDrawCall(), isLoop, particleEffectLastTime);
     }
 
     void UpdateOverdrawCurve()
     {
         EffectEvlaData[] effectEvlaData = this.GetEffectEvlaData();
-        Overdraw = m_CurveOverdraw.UpdateAnimationCurve(effectEvlaData[0].GetPixRate(), 循环, 特效运行时间);
+        Overdraw = m_CurveOverdraw.UpdateAnimationCurve(effectEvlaData[0].GetPixRate(), isLoop, particleEffectLastTime);
     }
 
 	//监听apply事件

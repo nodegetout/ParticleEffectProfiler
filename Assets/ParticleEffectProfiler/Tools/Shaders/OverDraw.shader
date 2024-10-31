@@ -1,4 +1,4 @@
-﻿Shader "ParticleEffectProfiler/OverDraw"
+﻿Shader "Hidden/ParticleEffectProfiler/OverDraw"
 {
 	SubShader
 	{

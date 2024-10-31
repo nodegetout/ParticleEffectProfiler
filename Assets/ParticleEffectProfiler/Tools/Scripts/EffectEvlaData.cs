@@ -1,8 +1,4 @@
 ﻿#if UNITY_EDITOR
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// 处理像素计算

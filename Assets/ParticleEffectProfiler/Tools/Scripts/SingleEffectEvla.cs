@@ -1,7 +1,4 @@
 ﻿#if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -11,15 +8,16 @@ public class SingleEffectEvla {
     private EffectEvlaData[] _effectEvlaData;
     private int _qualityIndex = 0;
     public GameObject _effectObj;
-    public static string[] Qualitys = { "High", "Middle", "Low" };
+    
+    private static string[] EffectQualityLevel = { "High", "Middle", "Low" };
     
     public SingleEffectEvla(int qualityIndex)
     {
-        _effectEvlaData = new EffectEvlaData[Qualitys.Length];
+        _effectEvlaData = new EffectEvlaData[EffectQualityLevel.Length];
         for (int i = 0; i < _effectEvlaData.Length; i++)
         {
             _effectEvlaData[i] = new EffectEvlaData();
-            _effectEvlaData[i].quality = Qualitys[i];
+            _effectEvlaData[i].quality = EffectQualityLevel[i];
         }
 
         ChangeQuality(qualityIndex);

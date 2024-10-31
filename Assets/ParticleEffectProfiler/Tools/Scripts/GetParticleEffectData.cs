@@ -1,11 +1,8 @@
 ﻿#if UNITY_EDITOR
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 /// <summary>
 /// 处理特效整体相关的数据

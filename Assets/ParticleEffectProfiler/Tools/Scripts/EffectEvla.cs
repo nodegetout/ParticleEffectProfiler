@@ -1,7 +1,5 @@
 #if UNITY_EDITOR
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -41,7 +39,7 @@ public class EffectEvla
     public void SetCamera(Camera camera)
     {
         _camera = camera;
-        camera.SetReplacementShader(Shader.Find("ParticleEffectProfiler/OverDraw"), "");
+        camera.SetReplacementShader(Shader.Find("Hidden/ParticleEffectProfiler/OverDraw"), "");
     }
 
     public void Update()
